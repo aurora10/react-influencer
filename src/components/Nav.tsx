@@ -1,42 +1,39 @@
-import React from 'react';
+import React, {PropsWithRef} from 'react';
+import {Link} from 'react-router-dom'
+import {connect} from "react-redux";
 
-const Nav = () => {
+const Nav = (props: PropsWithRef<any>) => {
+
+    let menu;
+
+    if (props.user) {
+        menu = (
+            <>
+                <nav className= "my-2 my-md-0 mr-md-3 ">
+                    <Link to={'/login'} onClick = {() => localStorage.clear()} className="p-2 text-dark">Logout</Link>
+
+                </nav>
+
+
+                <Link to={'/profile'} className="btn btn-outline-primary">{props.user.first_name}</Link>
+            </>
+        )
+
+    }else{
+        menu = (
+            <Link to={'/login' } className="btn btn-outline-primary text-right ">Login</Link>
+        )
+    }
     return (
-        <header>
-            <div className="collapse bg-dark" id="navbarHeader">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-sm-8 col-md-7 py-4">
-                            <h4 className="text-white">About</h4>
-                            <p className="text-muted">Add some information about the album below, the author, or any other
-                                background context. Make it a few sentences long so folks can pick up some informative tidbits. Then,
-                                link them off to some social networking sites or contact information.</p>
-                        </div>
-                        <div className="col-sm-4 offset-md-1 py-4">
-                            <h4 className="text-white">Contact</h4>
-                            <ul className="list-unstyled">
-                                <li><a href="#" className="text-white">Follow on Twitter</a></li>
-                                <li><a href="#" className="text-white">Like on Facebook</a></li>
-                                <li><a href="#" className="text-white">Email me</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="navbar navbar-dark bg-dark shadow-sm">
-                <div className="container">
-                    <a href="#" className="navbar-brand d-flex align-items-center">
 
-                        <strong>Album</strong>
-                    </a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
-                            aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-            </div>
-        </header>
+        <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
+            <Link to={'/' } className="navbar-brand my-0 mr-md-auto font-weight-normal ">Influencer</Link>
+
+            {menu}
+
+        </div>
     );
 };
 
-export default Nav;
+// @ts-ignore
+export default connect(state => ({user:state.user})) (Nav);
