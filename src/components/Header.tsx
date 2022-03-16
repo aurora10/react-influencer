@@ -24,7 +24,8 @@ const Header = (props: PropsWithRef<any>) => {
     }else {
         buttons = (
             <p>
-                <Link to={'/login'} className="btn btn-primary my-2">Login</Link>
+                <Link to={'/login'} className="btn btn-primary my-2" >Login</Link>
+          <span>   </span><span>   </span>
                 <Link to={'/register'} className="btn btn-primary my-2">Register</Link>
             </p>
         )

@@ -10,6 +10,10 @@ const Nav = (props: PropsWithRef<any>) => {
         menu = (
             <>
                 <nav className= "my-2 my-md-0 mr-md-3 ">
+
+                    <Link to={'/stats'}  className="p-2 text-dark">Stats</Link>
+                    <Link to={'/rankings'}  className="p-2 text-dark">Rankings</Link>
+
                     <Link to={'/login'} onClick = {() => localStorage.clear()} className="p-2 text-dark">Logout</Link>
 
                 </nav>

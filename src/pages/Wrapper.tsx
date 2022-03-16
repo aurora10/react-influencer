@@ -9,6 +9,7 @@ import setUser from "../redux/actions/setUserAction";
 
 
 const Wrapper = (props: PropsWithChildren<any>) => {
+
     useEffect( () => {
         (async () => {
             try {
